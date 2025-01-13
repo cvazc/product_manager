@@ -1,5 +1,4 @@
 import { Request, Response } from "express"
-import { validationResult } from "express-validator"
 import Product from "../models/Product.model"
 
 export const getProducts = async (req: Request, res: Response) => {
