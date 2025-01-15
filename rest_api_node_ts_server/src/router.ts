@@ -2,6 +2,7 @@ import { Router } from "express"
 import { body, param } from "express-validator"
 import {
     createProduct,
+    deleteProduct,
     getProductById,
     getProducts,
     updateAvailability,
@@ -37,8 +38,8 @@ router.post(
 
 router.put(
     "/:id",
+    param("id").isInt().withMessage("ID not valid"),
     body("name").notEmpty().withMessage("Product name can not be empty"),
-
     body("price")
         .isNumeric()
         .withMessage("Price not valid")
@@ -53,10 +54,18 @@ router.put(
     updateProduct
 )
 
-router.patch("/:id", updateAvailability)
+router.patch(
+    "/:id",
+    param("id").isInt().withMessage("ID not valid"),
+    handleInputErrors,
+    updateAvailability
+)
 
-router.delete("/", (req, res) => {
-    res.json("From DELETE")
-})
+router.delete(
+    "/:id",
+    param("id").isInt().withMessage("ID not valid"),
+    handleInputErrors,
+    deleteProduct
+)
 
 export default router
