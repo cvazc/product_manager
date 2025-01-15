@@ -11,6 +11,7 @@ import { handleInputErrors } from "./middleware"
 const router = Router()
 
 router.get("/", getProducts)
+
 router.get(
     "/:id",
     param("id").isInt().withMessage("ID not valid"),
