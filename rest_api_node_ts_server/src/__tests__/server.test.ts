@@ -1,9 +1,15 @@
-describe('First test', () => {
-    it('Check if 2 + 2 equals 4', () => {
-        expect(2 + 2).toBe(4)
-    })
+import request from "supertest"
+import server from "../server"
 
-    it('Check if 2 + 2 not equals 5', () => {
-        expect(2 + 2).not.toBe(5)
+describe('GET /api', () => {
+    it('Should send back a JSON response', async () => {
+        const response = await request(server).get('/api')
+
+        expect(response.status).toBe(200)
+        expect(response.headers['content-type']).toMatch(/json/)
+        expect(response.body.msg).toBe('From API')
+
+        expect(response.status).not.toBe(404)
+        expect(response.body.msg).not.toBe('from api')
     })
 })
