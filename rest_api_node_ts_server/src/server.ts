@@ -3,7 +3,7 @@ import router from "./router"
 import database from "./config/database"
 import colors from "colors"
 
-async function connectDatabase() {
+export async function connectDatabase() {
     try {
         await database.authenticate()
         database.sync()
