@@ -1,4 +1,5 @@
 import swaggerJSDoc from "swagger-jsdoc"
+import { SwaggerUiOptions } from "swagger-ui-express"
 
 const options: swaggerJSDoc.Options = {
     swaggerDefinition: {
@@ -20,4 +21,20 @@ const options: swaggerJSDoc.Options = {
 
 const swaggerSpec = swaggerJSDoc(options)
 
+const swaggerUiOption: SwaggerUiOptions = {
+    customCss: `
+        .topbar-wrapper .link {
+            content: url('https://img.freepik.com/free-vector/hand-drawn-flat-design-anarchy-symbol_23-2149244363.jpg');
+            height: 80px;
+            width: auto;
+        }
+
+        .swagger-ui .topbar {
+            background-color: #2b3b45;
+        }
+    `,
+    customSiteTitle: "REST API Docs Express / TypeScript"
+}
+
 export default swaggerSpec
+export { swaggerUiOption }
